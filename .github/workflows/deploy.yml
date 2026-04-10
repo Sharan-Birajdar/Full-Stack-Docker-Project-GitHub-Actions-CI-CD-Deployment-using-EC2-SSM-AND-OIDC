@@ -27,7 +27,7 @@ jobs:
 
     - name: Build frontend Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/devops-app:latest ./frontend
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend-app:latest ./frontend
 
     - name: Push frontend Image
       run: |
@@ -35,7 +35,7 @@ jobs:
 
     - name: Build Backend Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/devops-app:latest ./backend
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/backend-app:latest ./backend
 
     - name: Push backend Image
       run: |
