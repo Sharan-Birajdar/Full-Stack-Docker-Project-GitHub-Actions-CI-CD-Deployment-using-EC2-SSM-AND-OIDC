@@ -1,25 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>DevOps Project</title>
+<meta charset="UTF-8">
+<title>Sorry ❤️ Love Page</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg,#ff4e50,#f9d423);
+  font-family: Arial;
+  overflow: hidden;
+}
+
+.card {
+  text-align: center;
+  background: rgba(255,255,255,0.2);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1 {
+  color: white;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+#loveBtn {
+  background: #ff2e63;
+  color: white;
+  font-size: 18px;
+}
+
+#hateBtn {
+  background: #222;
+  color: white;
+}
+
+#finalBtn {
+  display: none;
+  background: #00c853;
+  color: white;
+  font-size: 22px;
+}
+
+#msg {
+  color: white;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+/* confetti */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: red;
+  top: -10px;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(100vh) rotate(360deg); }
+}
+
+</style>
 </head>
 
 <body>
 
-<h1>DevOps CI/CD Project</h1>
+<div class="card">
+  <h1>❤️ Sorry... I Love You ❤️</h1>
 
-<button onclick="getMessage()">Call Backend API</button>
+  <h2>Do you love me or hate me?</h2>
 
-<p id="result"></p>
+  <button id="loveBtn" onclick="loveClick()">Love Me ❤️</button>
+  <button id="hateBtn" onclick="hateClick()">Hate Me 😢</button>
+
+  <br>
+
+  <button id="finalBtn" onclick="celebrate()">I LOVE SHARAN ❤️</button>
+
+  <div id="msg"></div>
+</div>
 
 <script>
-function getMessage() {
-fetch("http://localhost:5000/api")
-.then(res => res.json())
-.then(data => {
-document.getElementById("result").innerText = data.message;
-});
+
+let size = 18;
+let hateCount = 0;
+
+function loveClick() {
+  document.getElementById("msg").innerHTML = "Yay! ❤️ I love you too!";
+  document.getElementById("finalBtn").style.display = "inline-block";
 }
+
+function hateClick() {
+
+  hateCount++;
+
+  let loveBtn = document.getElementById("loveBtn");
+  let msg = document.getElementById("msg");
+
+  size += 5;
+  loveBtn.style.fontSize = size + "px";
+  loveBtn.style.padding = (size/2) + "px";
+
+  msg.innerHTML = "Please love me ❤️".repeat(hateCount);
+
+  if (hateCount >= 5) {
+    document.getElementById("finalBtn").style.display = "inline-block";
+  }
+}
+
+function celebrate() {
+  document.body.innerHTML = "<h1 style='color:white;font-size:50px;text-align:center;'>💖 I LOVE YOU SHARAN 💖</h1>";
+  startConfetti();
+}
+
+function startConfetti() {
+  for(let i=0;i<100;i++){
+    let c = document.createElement("div");
+    c.classList.add("confetti");
+    c.style.left = Math.random()*100 + "vw";
+    c.style.background = ["red","yellow","blue","pink","green"][Math.floor(Math.random()*5)];
+    c.style.animationDuration = (Math.random()*3+2) + "s";
+    document.body.appendChild(c);
+  }
+}
+
 </script>
 
 </body>
