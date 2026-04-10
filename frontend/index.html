@@ -22,6 +22,7 @@ body {
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 600px;
 }
 
 h1 {
@@ -82,6 +83,7 @@ button {
 <body>
 
 <div class="card">
+
   <h1>❤️ Sorry... I Love You ❤️</h1>
 
   <h2>Do you love me or hate me?</h2>
@@ -94,6 +96,7 @@ button {
   <button id="finalBtn" onclick="celebrate()">I LOVE SHARAN ❤️</button>
 
   <div id="msg"></div>
+
 </div>
 
 <script>
@@ -102,7 +105,14 @@ let size = 18;
 let hateCount = 0;
 
 function loveClick() {
-  document.getElementById("msg").innerHTML = "Yay! ❤️ I love you too!";
+
+  document.getElementById("msg").innerHTML =
+    "I am really sorry Disha ❤️<br><br>" +
+    "I never wanted to hurt you.<br>" +
+    "You are the most beautiful part of my life 💖<br>" +
+    "Please forgive me 🙏<br><br>" +
+    "Love you so much Disha ❤️";
+
   document.getElementById("finalBtn").style.display = "inline-block";
 }
 
@@ -117,7 +127,7 @@ function hateClick() {
   loveBtn.style.fontSize = size + "px";
   loveBtn.style.padding = (size/2) + "px";
 
-  msg.innerHTML = "Please love me ❤️".repeat(hateCount);
+  msg.innerHTML = "Please love me ❤️ ".repeat(hateCount);
 
   if (hateCount >= 5) {
     document.getElementById("finalBtn").style.display = "inline-block";
@@ -125,16 +135,22 @@ function hateClick() {
 }
 
 function celebrate() {
-  document.body.innerHTML = "<h1 style='color:white;font-size:50px;text-align:center;'>💖 I LOVE YOU SHARAN 💖</h1>";
+
+  document.body.innerHTML =
+    "<h1 style='color:white;font-size:45px;text-align:center;margin-top:20%'>" +
+    "💖 I love you so much Disha 💖<br><br>" +
+    "I am really sorry for everything 🙏" +
+    "</h1>";
+
   startConfetti();
 }
 
 function startConfetti() {
-  for(let i=0;i<100;i++){
+  for(let i=0;i<120;i++){
     let c = document.createElement("div");
     c.classList.add("confetti");
     c.style.left = Math.random()*100 + "vw";
-    c.style.background = ["red","yellow","blue","pink","green"][Math.floor(Math.random()*5)];
+    c.style.background = ["red","yellow","blue","pink","green","white"][Math.floor(Math.random()*6)];
     c.style.animationDuration = (Math.random()*3+2) + "s";
     document.body.appendChild(c);
   }
