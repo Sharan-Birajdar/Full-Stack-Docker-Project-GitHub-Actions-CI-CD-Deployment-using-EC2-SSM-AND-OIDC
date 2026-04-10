@@ -1,4 +1,4 @@
-name: CI/CD Docker + OIDC + SSM
+name: CI/CD Docker Hub + OIDC + SSM
 
 on:
   push:
@@ -12,7 +12,6 @@ permissions:
 jobs:
 
   build-and-push:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +19,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
-    - name: Login Docker Hub
+    - name: Login to Docker Hub using Token
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -33,7 +32,6 @@ jobs:
     - name: Push Docker Image
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/devops-app:latest
-
 
   deploy:
 
@@ -48,7 +46,7 @@ jobs:
         role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Deploy using SSM
+    - name: Deploy Container via SSM
       run: |
 
         aws ssm send-command \
